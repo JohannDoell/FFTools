@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
 
         if has_duplicates(array):
             self.ui.textBrowser.setText("Has duplicates")
-        if too_many_elements(array, 4):
+        elif too_many_elements(array, 4):
             self.ui.textBrowser.setText("Too many scratches")
         else:
             self.ui.textBrowser.setText("")
