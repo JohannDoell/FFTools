@@ -3,7 +3,8 @@ def to_matrix(list_to_convert, n):
 
 
 def has_duplicates(array):
-    return len(array) == len(set(array))
+    set_array = set(array)
+    return len(array) != len(set_array)
 
 
 def too_many_elements(array, max_elements):
