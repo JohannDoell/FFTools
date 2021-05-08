@@ -3,18 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import MiniCactpot
-
-
-def to_matrix(list_to_convert, n):
-    return [list_to_convert[i:i + n] for i in range(0, len(list_to_convert), n)]
-
-
-def has_duplicates(array):
-    return len(array) == len(set(array))
-
-
-def too_many_elements(array, max_elements):
-    return len(array) > max_elements
+from helper import *
 
 
 class MainWindow(QMainWindow):
