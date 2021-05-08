@@ -11,6 +11,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(parent)
         self.ui = MiniCactpot.Ui_MainWindow()
         self.ui.setupUi(self)
+
         self.text_edit_buttons = []
         self.load_text_edit_into_list()
         self.assign_value_change_function()
