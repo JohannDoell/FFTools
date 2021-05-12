@@ -37,6 +37,12 @@ class MainWindow(QMainWindow):
             textbox_values[x] = self.text_edit_buttons[x].toPlainText()
 
         cactpot_matrix = to_matrix(textbox_values, 3)
+        for x in range(len(cactpot_matrix)):
+            for y in range(len(cactpot_matrix)):
+                if cactpot_matrix[x][y] == '':
+                    cactpot_matrix[x][y] = 0
+                else:
+                    cactpot_matrix[x][y] = int(cactpot_matrix[x][y])
         print(cactpot_matrix)
 
         array = textbox_values.copy()
