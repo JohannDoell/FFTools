@@ -77,7 +77,9 @@ class Solver:
 
 
 if __name__ == "__main__":
-    matrix = [1, 0, 4, 0, 2, 0, 0, 0, 3]
+    matrix = [1, 0, 0,
+              0, 0, 0,
+              0, 0, 0]
     solver = Solver()
     solver.feed_input(matrix)
     solver.calculate_expected_line_values()
