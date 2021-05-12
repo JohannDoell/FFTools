@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import MiniCactpot
 from helper import *
+from solver.solver import *
 
 
 class MainWindow(QMainWindow):
@@ -32,17 +33,21 @@ class MainWindow(QMainWindow):
             self.text_edit_buttons[x].textChanged.connect(self.compute_cactpot_matrix)
 
     def compute_cactpot_matrix(self):
+
+        def sanitize_matrix():
+            pass
+
         textbox_values = [''] * 9
         for x in range(len(self.text_edit_buttons)):
             textbox_values[x] = self.text_edit_buttons[x].toPlainText()
 
-        cactpot_matrix = to_matrix(textbox_values, 3)
+        # cactpot_matrix = to_matrix(textbox_values, 3)
+        cactpot_matrix = textbox_values.copy()
         for x in range(len(cactpot_matrix)):
-            for y in range(len(cactpot_matrix)):
-                if cactpot_matrix[x][y] == '':
-                    cactpot_matrix[x][y] = 0
-                else:
-                    cactpot_matrix[x][y] = int(cactpot_matrix[x][y])
+            if cactpot_matrix[x] == '':
+                cactpot_matrix[x] = 0
+            else:
+                cactpot_matrix[x] = int(cactpot_matrix[x])
         print(cactpot_matrix)
 
         array = textbox_values.copy()
@@ -56,7 +61,9 @@ class MainWindow(QMainWindow):
             self.ui.textBrowser.setText("Too many scratches")
         else:
             self.ui.textBrowser.setText("")
-            pass
+            cactpot_solver = Solver()
+            cactpot_solver.feed_input(cactpot_matrix)
+            cactpot_solver.calculate_expected_line_values()
 
 
 if __name__ == '__main__':
