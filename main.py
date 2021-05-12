@@ -37,7 +37,6 @@ class MainWindow(QMainWindow):
     def compute_cactpot_matrix(self):
         """
         Takes the values from the UI and sends the cactpot board to solver.py
-        :return:
         """
 
         def sanitize_matrix(textbox_entries):
@@ -78,7 +77,7 @@ class MainWindow(QMainWindow):
             self.ui.textBrowser.setText("")
             cactpot_solver = Solver()
             cactpot_solver.feed_input(cactpot_matrix)
-            cactpot_solver.calculate_expected_line_values()
+            print(cactpot_solver.calculate_expected_line_values())
 
 
 if __name__ == '__main__':

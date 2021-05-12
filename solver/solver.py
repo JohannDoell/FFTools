@@ -20,23 +20,41 @@ class Solver:
         self.line_values = []
 
     def feed_input(self, board_state):
+        """
+        Assigns a given board state to the solver's internal variables.
+        :param board_state: A given cactpot board state as a 1D list.
+        """
         self.input = board_state.copy()
         self.get_hidden_and_revealed(self.input.copy())
 
     def get_hidden_and_revealed(self, board_state):
+        """
+        Finds the hidden and revealed values from a board_state and
+        assigns them to the solver's internal variables.
+        :param board_state: A given cactpot board state as a 1D list.
+        """
         self.hidden_values = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.revealed_values = []
         for number in range(1, 9):
             if number in board_state:
                 self.hidden_values.remove(number)
                 self.revealed_values.append(number)
-
         # print(self.hidden_values)
         # print(self.revealed_values)
 
     def calculate_expected_line_values(self):
+        """
+        Calculates the expected (mean) value for each line in the board state.
+        :return:
+        """
 
         def calculate_line(selected_line, selected_hidden):
+            """
+            Calculates the expected value for a given 1D array line.
+            :param selected_line:
+            :param selected_hidden:
+            :return:
+            """
             full = True
             for i in range(len(selected_line)):
                 if selected_line[i] == 0:
@@ -57,6 +75,11 @@ class Solver:
                         calculate_line(new_line, new_hidden)
 
         def convert_permutations_to_payouts(permutation_list):
+            """
+            Calculates the expected payout from a list of permutation line values.
+            :param permutation_list: A list of permutation line total values.
+            :return: The expected (mean) payout rounded down (floor).
+            """
             payout_list = []
             for entry in permutation_list:
                 payout_list.append(PAYOUTS[entry])
@@ -73,7 +96,7 @@ class Solver:
             expected_value = convert_permutations_to_payouts(permutation_values)
             self.line_values.append(expected_value)
 
-        print(self.line_values)
+        return self.line_values
 
 
 if __name__ == "__main__":
@@ -82,4 +105,4 @@ if __name__ == "__main__":
               0, 0, 0]
     solver = Solver()
     solver.feed_input(matrix)
-    solver.calculate_expected_line_values()
+    print(solver.calculate_expected_line_values())
